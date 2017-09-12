@@ -1,27 +1,27 @@
-°²×¿Ó¦ÓÃ¹¤¾ß°üËµÃ÷£º
-	´ËÏîÄ¿¼¯³É´ó²¿·ÖÍ¨ÓÃµÄ¹¤¾ß°ü£¬Ö÷Òª°üÀ¨£º
-	1¡¢cn.richinfo.utils.bitmap°ü£ºÍ¼Æ¬´¦Àí¹¤¾ß¡¢Í¼Æ¬Ñ¡ÔñÆ÷£¬·â×°ÁË½ØÆÁ¡¢Í¼Æ¬²Ã¼ô¡¢´ÓÏà²áÖĞ»ñÈ¡Í¼Æ¬µÈ¹¦ÄÜ£»
-	2¡¢cn.richinfo.utils.dualsim°ü£ºË«¿¨ÊÖ»úsim¿¨ĞÅÏ¢»ñÈ¡¹¤¾ß°ü£¬ÓÃÓÚ»ñÈ¡Ë«¿¨ÊÖ»úsim¿¨µÄimsi¡¢imeiµÈÊı¾İĞÅÏ¢£»
-	3¡¢cn.richinfo.utils.parse°ü£ºÍ¼ÎÄ»ìÅÅ½âÎö¹¤¾ß£¬¿ÉÒÔÓÃÓÚÖÆ×÷±íÇé°ü×ÓµÄ¹¤¾ß£»
-	4¡¢cn.richinfo.utils.secret°ü£ºÊı¾İ¼ÓÃÜ½âÃÜ¹¤¾ß£¬½«Êı¾İ½øĞĞMD5¡¢AES¡¢DESºÍRSA¼ÓÃÜ´¦Àí£¬Í¬Ê±»¹·â×°ÁËbase64£»
-	5¡¢cn.richinfo.utils.time£ºÊ±¼ä´¦Àí¹¤¾ß£¬½«Ê±¼ä×ª»»ÎªÖ¸¶¨µÄ¸ñÊ½Êä³ö£»
+å®‰å“åº”ç”¨å·¥å…·åŒ…è¯´æ˜ï¼š
+	æ­¤é¡¹ç›®é›†æˆå¤§éƒ¨åˆ†é€šç”¨çš„å·¥å…·åŒ…ï¼Œä¸»è¦åŒ…æ‹¬ï¼š
+	1ã€cn.richinfo.utils.bitmapåŒ…ï¼šå›¾ç‰‡å¤„ç†å·¥å…·ã€å›¾ç‰‡é€‰æ‹©å™¨ï¼Œå°è£…äº†æˆªå±ã€å›¾ç‰‡è£å‰ªã€ä»ç›¸å†Œä¸­è·å–å›¾ç‰‡ç­‰åŠŸèƒ½ï¼›
+	2ã€cn.richinfo.utils.dualsimåŒ…ï¼šåŒå¡æ‰‹æœºsimå¡ä¿¡æ¯è·å–å·¥å…·åŒ…ï¼Œç”¨äºè·å–åŒå¡æ‰‹æœºsimå¡çš„imsiã€imeiç­‰æ•°æ®ä¿¡æ¯ï¼›
+	3ã€cn.richinfo.utils.parseåŒ…ï¼šå›¾æ–‡æ··æ’è§£æå·¥å…·ï¼Œå¯ä»¥ç”¨äºåˆ¶ä½œè¡¨æƒ…åŒ…å­çš„å·¥å…·ï¼›
+	4ã€cn.richinfo.utils.secretåŒ…ï¼šæ•°æ®åŠ å¯†è§£å¯†å·¥å…·ï¼Œå°†æ•°æ®è¿›è¡ŒMD5ã€AESã€DESå’ŒRSAåŠ å¯†å¤„ç†ï¼ŒåŒæ—¶è¿˜å°è£…äº†base64ï¼›
+	5ã€cn.richinfo.utils.timeï¼šæ—¶é—´å¤„ç†å·¥å…·ï¼Œå°†æ—¶é—´è½¬æ¢ä¸ºæŒ‡å®šçš„æ ¼å¼è¾“å‡ºï¼›
 	
-	6¡¢cn.richinfo.utils.ActivityManager£º´¦ÀíActivityÕ»µÄ¹¤¾ß£»
-	7¡¢cn.richinfo.utils.AlarmTaskController£ºÉèÖÃ¶¨Ê±ÈÎÎñµÄ¹¤¾ß£»
-	8¡¢cn.richinfo.utils.DialogUtil£ºDialog ¹¤¾ßÀà£»
-	9¡¢cn.richinfo.utils.FileUtil£ºÎÄ¼ş´¦Àí¹¤¾ß£»
-	10¡¢cn.richinfo.utils.FragmentUserVisibleController£ºFragmentµÄmUserVisibleHintÊôĞÔ¿ØÖÆÆ÷£¬ÓÃÓÚ×¼È·µÄ¼àÌıFragmentÊÇ·ñ¶ÔÓÃ»§¿É¼û£»
-	11¡¢cn.richinfo.utils.GZIPCompressUtil£ºzipÑ¹Ëõ½âÑ¹Ëõ¹¤¾ßÀà£»
-	12¡¢cn.richinfo.utils.LogUtils£ºÈÕÖ¾´òÓ¡¹¤¾ß£»
-	13¡¢cn.richinfo.utils.MessageUtil£ºÏûÏ¢ÌáÊ¾¹¤¾ß£»
-	14¡¢cn.richinfo.utils.MobileUtil£ºÅĞ¶ÏÊÖ»úºÅÂë£»
-	15¡¢cn.richinfo.utils.NetworkState£º¼à²âÍøÂç×´Ì¬¹¤¾ß£»
-	16¡¢cn.richinfo.utils.PackageUtil£º°ü¹ÜÀíÆ÷¹¤¾ß£»
-	17¡¢cn.richinfo.utils.PermissionUtil£ºÈ¨ÏŞ¹ÜÀí¹¤¾ß£»
-	18¡¢cn.richinfo.utils.Platform£º¼òÒ×Ïß³Ì³Ø¹ÜÀí¹¤¾ß£»
-	19¡¢cn.richinfo.utils.ReflectionUtil£º·´ÉäÀà¹¤¾ß£»
-	20¡¢cn.richinfo.utils.SharePersistent£º´æ´¢·â×°Àà¹¤¾ß£»
-	21¡¢cn.richinfo.utils.StrictModeUtil£ºÑÏ¸ñÄ£Ê½¹ÜÀí¹¤¾ß£»
-	22¡¢cn.richinfo.utils.SystemUtil£ºÏµÍ³¹ÜÀí¹¤¾ß¡£
+	6ã€cn.richinfo.utils.ActivityManagerï¼šå¤„ç†Activityæ ˆçš„å·¥å…·ï¼›
+	7ã€cn.richinfo.utils.AlarmTaskControllerï¼šè®¾ç½®å®šæ—¶ä»»åŠ¡çš„å·¥å…·ï¼›
+	8ã€cn.richinfo.utils.DialogUtilï¼šDialog å·¥å…·ç±»ï¼›
+	9ã€cn.richinfo.utils.FileUtilï¼šæ–‡ä»¶å¤„ç†å·¥å…·ï¼›
+	10ã€cn.richinfo.utils.FragmentUserVisibleControllerï¼šFragmentçš„mUserVisibleHintå±æ€§æ§åˆ¶å™¨ï¼Œç”¨äºå‡†ç¡®çš„ç›‘å¬Fragmentæ˜¯å¦å¯¹ç”¨æˆ·å¯è§ï¼›
+	11ã€cn.richinfo.utils.GZIPCompressUtilï¼šzipå‹ç¼©è§£å‹ç¼©å·¥å…·ç±»ï¼›
+	12ã€cn.richinfo.utils.LogUtilsï¼šæ—¥å¿—æ‰“å°å·¥å…·ï¼›
+	13ã€cn.richinfo.utils.MessageUtilï¼šæ¶ˆæ¯æç¤ºå·¥å…·ï¼›
+	14ã€cn.richinfo.utils.MobileUtilï¼šåˆ¤æ–­æ‰‹æœºå·ç ï¼›
+	15ã€cn.richinfo.utils.NetworkStateï¼šç›‘æµ‹ç½‘ç»œçŠ¶æ€å·¥å…·ï¼›
+	16ã€cn.richinfo.utils.PackageUtilï¼šåŒ…ç®¡ç†å™¨å·¥å…·ï¼›
+	17ã€cn.richinfo.utils.PermissionUtilï¼šæƒé™ç®¡ç†å·¥å…·ï¼›
+	18ã€cn.richinfo.utils.Platformï¼šç®€æ˜“çº¿ç¨‹æ± ç®¡ç†å·¥å…·ï¼›
+	19ã€cn.richinfo.utils.ReflectionUtilï¼šåå°„ç±»å·¥å…·ï¼›
+	20ã€cn.richinfo.utils.SharePersistentï¼šå­˜å‚¨å°è£…ç±»å·¥å…·ï¼›
+	21ã€cn.richinfo.utils.StrictModeUtilï¼šä¸¥æ ¼æ¨¡å¼ç®¡ç†å·¥å…·ï¼›
+	22ã€cn.richinfo.utils.SystemUtilï¼šç³»ç»Ÿç®¡ç†å·¥å…·ã€‚
 	
-Ä¿Ç°¹¤¾ß°üÖĞµÄ²¿·ÖÀà²»¹»ÍêÉÆ£¬»¶Ó­´ó¼ÒÒ»ÆğÀ©Õ¹ÍêÉÆ¡£
+ç›®å‰å·¥å…·åŒ…ä¸­çš„éƒ¨åˆ†ç±»ä¸å¤Ÿå®Œå–„ï¼Œæ¬¢è¿å¤§å®¶ä¸€èµ·æ‰©å±•å®Œå–„ã€‚
