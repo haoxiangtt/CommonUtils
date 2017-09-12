@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="text_array">
+        <item>#00</item>
+        <item>#01</item>
+        <item>#02</item>
+    </string-array>
+
+     <integer-array name="icon_array">
+    </integer-array>
+</resources>

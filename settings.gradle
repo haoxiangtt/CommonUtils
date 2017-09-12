@@ -1,0 +1,1 @@
+include ':app', ':richinfo_utils'
