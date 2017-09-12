@@ -1,4 +1,4 @@
-彩讯安卓应用工具包说明：
+安卓应用工具包说明：
 	此项目集成大部分通用的工具包，主要包括：
 	1、cn.richinfo.utils.bitmap包：图片处理工具、图片选择器，封装了截屏、图片裁剪、从相册中获取图片等功能；
 	2、cn.richinfo.utils.dualsim包：双卡手机sim卡信息获取工具包，用于获取双卡手机sim卡的imsi、imei等数据信息；
@@ -10,8 +10,7 @@
 	7、cn.richinfo.utils.AlarmTaskController：设置定时任务的工具；
 	8、cn.richinfo.utils.DialogUtil：Dialog 工具类；
 	9、cn.richinfo.utils.FileUtil：文件处理工具；
-	10、cn.richinfo.utils.FragmentUserVisibleController：Fragment的mUserVisibleHint属性控制器，用于准确的监听Fragment
-		是否对用户可见；
+	10、cn.richinfo.utils.FragmentUserVisibleController：Fragment的mUserVisibleHint属性控制器，用于准确的监听Fragment是否对用户可见；
 	11、cn.richinfo.utils.GZIPCompressUtil：zip压缩解压缩工具类；
 	12、cn.richinfo.utils.LogUtils：日志打印工具；
 	13、cn.richinfo.utils.MessageUtil：消息提示工具；
