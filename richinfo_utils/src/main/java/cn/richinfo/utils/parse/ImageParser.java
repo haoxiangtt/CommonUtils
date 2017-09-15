@@ -93,7 +93,12 @@ public class ImageParser {
 	    return sInstance;    
 	}
 
-	// 根据文本替换成图片    
+	/**
+	 * 根据文本替换成图文混排文本
+	 * @param text
+	 * @param textView
+	 * @return
+	 */
 	public CharSequence strToImage(CharSequence text,TextView textView) {
 		float textSize = textView.getTextSize();
 	    SpannableStringBuilder builder = new SpannableStringBuilder(text);    
@@ -113,7 +118,7 @@ public class ImageParser {
 	        float textHeight = (int) (Math.ceil(-fm.ascent) + 5);
 	        float textWidth = textHeight * drawable.getIntrinsicWidth() / drawable.getIntrinsicHeight();
 	        drawable.setBounds(0, 0, (int)textWidth, (int)textHeight);//这里设置图片的大小    
-	        ImageSpan imageSpan = new VerticalImageSpan(drawable,VerticalImageSpan.ALIGN_MIDDLE,textView);    
+	        ImageSpan imageSpan = new VerticalImageSpan(drawable, VerticalImageSpan.ALIGN_MIDDLE, textView);
 	        builder.setSpan(imageSpan, matcher.start(),    
 	                matcher.end(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);    
 	    }    

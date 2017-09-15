@@ -13,7 +13,7 @@ import android.widget.TextView;
  * @email ouyjf@giiso.com
  * @date 2015/8/25
  * @version 1.0
- * @description 垂直居中的ImageSpan
+ * @description 扩展垂直居中的ImageSpan
  */
 public class VerticalImageSpan extends ImageSpan {
 	
@@ -67,12 +67,13 @@ public class VerticalImageSpan extends ImageSpan {
         if (mVerticalAlignment == ALIGN_BASELINE) {
             transY -= paint.getFontMetricsInt().descent;
         }else if(mVerticalAlignment == ALIGN_MIDDLE){
-        	int leading = 0;
+            //change by haoxiangtt
+        	int offset = 0;//精准计算图片的偏差
         	if(android.os.Build.VERSION.SDK_INT >= 16){
-	        	leading = (int)((mTextView.getLineSpacingMultiplier() - 1) * 
+	        	offset = (int)((mTextView.getLineSpacingMultiplier() - 1) *
 	        			(bottom - top) / 4);
         	}
-        	transY = ((bottom - top) - drawable.getBounds().bottom) / 2 + top - leading;
+        	transY = ((bottom - top) - drawable.getBounds().bottom) / 2 + top - offset;
         }
         canvas.translate(x, transY);
         drawable.draw(canvas);

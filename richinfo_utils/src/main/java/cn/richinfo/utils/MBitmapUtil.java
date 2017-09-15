@@ -1,4 +1,4 @@
-package cn.richinfo.utils.bitmap;
+package cn.richinfo.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,8 +29,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import cn.richinfo.utils.LogUtil;
 
 /**
  * <pre>
@@ -70,7 +68,7 @@ public class MBitmapUtil {
 
 		Bitmap cropResult = null;
 
-		int screenWidth = ScreenUtils.getScreenWidth(context);
+		int screenWidth = ScreenUtil.getScreenWidth(context);
 
 		int sourceWidth = sourceBitmap.getWidth();
 		int sourceHeight = sourceBitmap.getHeight();

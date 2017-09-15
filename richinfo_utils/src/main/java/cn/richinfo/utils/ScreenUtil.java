@@ -1,4 +1,4 @@
-package cn.richinfo.utils.bitmap;
+package cn.richinfo.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,8 +25,8 @@ import java.io.IOException;
  * @desc       : 获得屏幕相关的辅助类
  * </pre>
  */
-public class ScreenUtils {
-	private ScreenUtils() {
+public class ScreenUtil {
+	private ScreenUtil() {
 		/* cannot be instantiated */
 		throw new UnsupportedOperationException("cannot be instantiated");
 	}

@@ -27,7 +27,7 @@ public class PicSelectorDialog extends Dialog implements DialogInterface.OnShowL
 		, DialogInterface.OnDismissListener{
 	
 	private static final String TAG = PicSelectorDialog.class.getSimpleName();
-	
+
 	public PicSelectorDialog(Context context, int resId,
 			final View.OnClickListener takePhotoListener,
 			final View.OnClickListener selectPicListener){
@@ -83,7 +83,7 @@ public class PicSelectorDialog extends Dialog implements DialogInterface.OnShowL
 
 	@Override
 	public void onShow(DialogInterface dialog) {
-//		ScreenUtils.backgroundAlpha(getOwnerActivity(), 0.4f);
+//		ScreenUtil.backgroundAlpha(getOwnerActivity(), 0.4f);
 		Window window = getWindow();
 		WindowManager.LayoutParams lp = window.getAttributes();
 		lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -95,6 +95,6 @@ public class PicSelectorDialog extends Dialog implements DialogInterface.OnShowL
 
 	@Override
 	public void onDismiss(DialogInterface dialog) {
-//		ScreenUtils.backgroundAlpha(getOwnerActivity(), 1f);
+//		ScreenUtil.backgroundAlpha(getOwnerActivity(), 1f);
 	}
 }

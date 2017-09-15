@@ -257,7 +257,7 @@ public class PackageUtil {
 
      */
 
-    private static Object getResourceId(Context context,String name, String type) {
+    public static Object getResourceId(Context context,String name, String type) {
 
         String className = context.getPackageName() +".R";
 

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -15,15 +14,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import cn.richinfo.utils.BuildConfig;
 import cn.richinfo.utils.LogUtil;
+import cn.richinfo.utils.PackageUtil;
 import cn.richinfo.utils.PermissionUtil;
 
 /**
@@ -35,7 +31,7 @@ import cn.richinfo.utils.PermissionUtil;
  * @createDate : 2017/5/11 0011
  * @modifyDate : 2017/5/11 0011
  * @version    : 1.0
- * @desc       : 本地图片选择器帮助类.(此类是非线程安全的)
+ * @desc       : 本地图片选择器帮助类,只支持单张图片获取.(此类是非线程安全的)
  * </pre>
  */
 public class PhotoPicker {
@@ -71,7 +67,8 @@ public class PhotoPicker {
 	 * 显示选择添加图片方式界面
 	 */
 	public void showSelectView() {
-		mDialog = new PicSelectorDialog(mActivity, new OnClickListener() {
+		int resId = PackageUtil.getIdentifier(mActivity, "utils_photo_picker_customDialog", "style");
+		mDialog = new PicSelectorDialog(mActivity, resId, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (PermissionUtil.isNeedRequestPermission()
@@ -100,7 +97,7 @@ public class PhotoPicker {
 		Intent getAlbum = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		mActivity.startActivityForResult(getAlbum, PHOTO_REQUEST_GALLERY);
-		mListener.onAddProcess();
+		mListener.onBeginHandle();
 	}
 
 	private void openCamera() {
@@ -112,23 +109,30 @@ public class PhotoPicker {
 			outputUri = Uri.fromFile(mCurTempFile);
 		} else {
 			outputUri = FileProvider.getUriForFile(mActivity,
-					BuildConfig.APPLICATION_ID + ".provider", mCurTempFile);
+					mActivity.getPackageName() + ".provider", mCurTempFile);
 		}
 		mCurTempUri = outputUri;
 		Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		cameraintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 		cameraintent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);
 		mActivity.startActivityForResult(cameraintent, PHOTO_REQUEST_TAKEPHOTO);
-		mListener.onAddProcess();
+		mListener.onBeginHandle();
 	}
 
 	// 使用系统当前日期加以调整作为照片的名称
-	public String getPhotoFileName() {
+	private String getPhotoFileName() {
 		Date date = new Date(System.currentTimeMillis());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HHmmss", Locale.CHINA);
 		return dateFormat.format(date) + ".PNG";
 	}
 
+	/**
+	 * 授权处理方法，请在activity的onRequestPermissionsResult方法中调用
+	 * @param requestCode
+	 * @param permissions
+	 * @param grantResults
+	 * @return
+	 */
 	public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		if (requestCode == PHOTO_REQUEST_PERSSION_CAMERA) {
 			if (grantResults != null && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -139,6 +143,14 @@ public class PhotoPicker {
 		return false;
 	}
 
+	/**
+	 * 图片获取结果
+	 * 请在activity中的onActivityResult调用此方法
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 * @return
+	 */
 	public boolean onActivityResult(final int requestCode, int resultCode, Intent data) {
 		if (resultCode == Activity.RESULT_CANCELED) {
 			//　取消操作
@@ -146,49 +158,40 @@ public class PhotoPicker {
 		}
 		switch (requestCode) {
 			case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用
-
-				/*Observable.just(mCurTempUri)
-					.subscribeOn(SchedulerProvider.getInstance().ui())
-					.subscribe(new Action1<Uri>() {
-						@Override
-						public void call(Uri uri) {
-
-						}
-					});*/
 				if(!mIsDestory && null != mListener){
 					try {
-						mListener.onAddResult(requestCode, mCurTempUri);
+						mListener.onResult(requestCode, mCurTempUri);
 					} catch (Exception e) {
 						LogUtil.e(TAG, " process result error :"+e.toString());
 					}
 				}
 				return true;
 			case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时
-//				mListener.onAddProcess();
+//				mListener.onBeginHandle();
 				// 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常，下同
 				if (data != null) {
-					mListener.onAddResult(requestCode, data.getData());
+					mListener.onResult(requestCode, data.getData());
 				} else {
-					mListener.onAddResult(requestCode, null);
+					mListener.onResult(requestCode, null);
 					LogUtil.e(TAG, " data is null, request = " + requestCode);
 				}
 				return true;
 			case PHOTO_REQUEST_CROP:
 				if (data != null) {
-					mListener.onAddResult(requestCode, mCurTempUri);
+					mListener.onResult(requestCode, mCurTempUri);
 				} else {
-					mListener.onAddResult(requestCode, null);
+					mListener.onResult(requestCode, null);
 					LogUtil.e(TAG, "data is null, request = " + requestCode);
 				}
 				return true;
 			default:
-				mListener.onAddResult(requestCode, null);
+				mListener.onResult(requestCode, null);
 				break;
 		}
 		return false;
 	}
 
-	private void rotatePhoto(String photoPath) {
+	/*private void rotatePhoto(String photoPath) {
 		int angle = MBitmapUtil.readPictureDegree(photoPath);
 		LogUtil.d(TAG, "photo degree is : " + angle);
 		if (angle > 0) {
@@ -240,7 +243,7 @@ public class PhotoPicker {
 				}
 			}
 		}
-	}
+	}*/
 
 	/**
 	 * activity 销毁时调用
@@ -264,14 +267,14 @@ public class PhotoPicker {
 		/**
 		 * 处理图片中...
 		 */
-		void onAddProcess();
+		void onBeginHandle();
 
 		/**
 		 * 添加完成回调方法
 		 * 
 		 * @param uri
 		 */
-		void onAddResult(int requestCode, Uri uri);
+		void onResult(int requestCode, Uri uri);
 
 	}
 	
@@ -296,7 +299,7 @@ public class PhotoPicker {
 			intent.putExtra("noFaceDetection", true);
 			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 			activity.startActivityForResult(intent, PHOTO_REQUEST_CROP);
-			mListener.onAddProcess();
+			mListener.onBeginHandle();
 			return true;
 		}
 		return false;
