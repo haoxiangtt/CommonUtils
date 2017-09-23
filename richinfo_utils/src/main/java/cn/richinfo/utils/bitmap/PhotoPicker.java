@@ -212,7 +212,7 @@ public class PhotoPicker {
 			FileOutputStream fos = null;
 			try {
 				fos = new FileOutputStream(tempPath);
-				rotatedBmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+				rotatedBmp.strCompress(Bitmap.CompressFormat.PNG, 100, fos);
 				File tempFile = new File(tempPath);
 				if (tempFile.exists() && tempFile.isFile()) {
 					File photoFile = new File(photoPath);

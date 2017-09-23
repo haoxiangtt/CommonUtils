@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * md5 32byte keys compress 16byte
+ * md5 32byte keys strCompress 16byte
  * 
  * @author changlh
  * 

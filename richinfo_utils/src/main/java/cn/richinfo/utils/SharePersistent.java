@@ -12,24 +12,7 @@ public class SharePersistent {
     /**
      * 用于存储token,openid等数据的文件名称
      */
-    private final static String FILE_NAME = "UMC_SDK_SHARE_PREFERENCE"; // 数据记录文件名称
-
-    public final static String KEY_CONFIG_SIM_SLOT_ID = "KEY_CONFIG_SIM_SLOT_ID";//默认登录sim卡的slot_id
-
-    public final static String KEY_SMS_CONTENT = "KEY_SMS_CONTENT_";
-
-    public final static String KEY_SMS_EXPIRE_TIME = "KEY_SMS_EXPIRE_TIME_;";
-
-    public final static String KEY_MOBILEKEY = "KEY_MOBILEKEY";//用于存入mobilekey
-    public final static String KEY_BUFFER_CURRENT_TIME = "KEY_BUFFER_CURRENT_TIME";//用于存入缓冲页面的当前时间
-    public final static String KEY_SECURITYPHONE = "KEY_SECURITYPHONE";
-    public final static String KEY_IMSI_MOBILEKEY = "KEY_IMSI_MOBILEKEY";
-    public final static String KEY_AUTH_TYPE = "KEY_AUTH_TYPE";
-
-
-    public final static String KEY_ISUNUSEAUTH = "KEY_ISUNUSEAUTH"; //用于控制是否特别权限(显示登录页面)
-    public final static String KEY_RELAY_STATE = "KEY_RELAY_STATE";
-    public final static String KEY_CAPAIDS = "KEY_CAPAIDS";
+    private final static String FILE_NAME = "COMMON_SHARE_PREFERENCE"; // 数据记录文件名称
 
     private SharePersistent() {
     }

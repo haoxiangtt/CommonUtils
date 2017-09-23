@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
  * change by ouyangjinfu
  * @version 创建时间：2014年9月20日 下午5:31:53
  */
-public class NetworkState {
+public class 	NetworkState {
 
 	public enum NetWorkType { UNKNOWN,WIFI,MOBILE_2G,MOBILE_3G,MOBILE_4G }
 

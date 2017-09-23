@@ -1,4 +1,4 @@
-package cn.richinfo.utils.parse;
+package cn.richinfo.utils.spanparse;
 
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;

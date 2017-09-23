@@ -12,6 +12,18 @@ import javax.crypto.Cipher;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ * <pre>
+ * @copyright  : Copyright ©2004-2018 版权所有　彩讯科技股份有限公司
+ * @company    : 彩讯科技股份有限公司
+ * @author     : OuyangJinfu
+ * @e-mail     : ouyangjinfu@richinfo.cn
+ * @createDate : 2017/7/18 0018
+ * @modifyDate : 2017/7/18 0018
+ * @version    : 1.0
+ * @desc       : 加密解密相关的工具类（UMC SDK Project）
+ * </pre>
+ */
 public class Encrypt {
 	private static final String HMAC_SHA256 = "HmacSHA256";
 	public static final String HASH_TYPE_MD5 = "1";

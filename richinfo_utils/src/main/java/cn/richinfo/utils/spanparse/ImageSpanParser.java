@@ -1,4 +1,4 @@
-package cn.richinfo.utils.parse;
+package cn.richinfo.utils.spanparse;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -22,12 +22,12 @@ import cn.richinfo.utils.PackageUtil;
  * @version 1.0
  * @description 将特殊字符串替换成相应图片，实现图文混排效果
  */
-public class ImageParser {    
+public class ImageSpanParser {
     public static int DEFAULT_IMAGE_RES_IDS = 0;
 
 	public static int DEFAULT_IMAGE_TEXTS_IDS = 0;
 
-	private static ImageParser sInstance;    
+	private static ImageSpanParser sInstance;
     
     private final Context mContext;    
     private final String[] mImageTexts;    
@@ -37,7 +37,7 @@ public class ImageParser {
     
     private Paint mPaint;
     
-    private ImageParser(Context context) {    
+    private ImageSpanParser(Context context) {
         mContext = context;
 		DEFAULT_IMAGE_RES_IDS = PackageUtil.getIdentifier(context, "icon_array", "array");
 		DEFAULT_IMAGE_TEXTS_IDS = PackageUtil.getIdentifier(context, "text_array", "array");
@@ -86,10 +86,10 @@ public class ImageParser {
 	}
 
 	public static void init(Context context) {    
-	    sInstance = new ImageParser(context);    
+	    sInstance = new ImageSpanParser(context);
 	}
 
-	public static ImageParser getInstance() {
+	public static ImageSpanParser getInstance() {
 	    return sInstance;    
 	}
 
