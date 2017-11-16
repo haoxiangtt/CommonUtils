@@ -138,9 +138,10 @@ public class SamsungDualSim extends DualsimBase {
                 return (String) (myObject = getSimManagerDefault(simID)).getClass()
                     .getMethod("getSubscriberId").invoke(myObject);
             } else {
-                Object obj;
+                return super.getImsi(simID);
+                /*Object obj;
                 return (String) (obj = getSimManagerDefault(simID)).getClass()
-                    .getDeclaredMethod("getSubscriberId", int.class).invoke(obj, simID);
+                    .getDeclaredMethod("getSubscriberId", int.class).invoke(obj, simID);*/
             }
 
         } catch (Exception e) {
@@ -161,8 +162,9 @@ public class SamsungDualSim extends DualsimBase {
                 return (Integer) (myObject = getSimManagerDefault(simID)).getClass()
                         .getDeclaredMethod("getSimState").invoke(myObject);
             } else {
-                return (Integer) (myObject = getSimManagerDefault(simID)).getClass()
-                        .getDeclaredMethod("getSimState", int.class).invoke(myObject, simID);
+                return getSimState(simID);
+                /*return (Integer) (myObject = getSimManagerDefault(simID)).getClass()
+                        .getDeclaredMethod("getSimState", int.class).invoke(myObject, simID);*/
             }
 
         } catch (Exception e) {
@@ -182,8 +184,9 @@ public class SamsungDualSim extends DualsimBase {
                 return (String) (myObject = getSimManagerDefault(simID)).getClass()
                         .getDeclaredMethod("getDeviceId").invoke(myObject);
             } else {
-                return (String) (myObject = getSimManagerDefault(simID)).getClass()
-                        .getDeclaredMethod("getDeviceId", int.class).invoke(myObject, simID);
+                return super.getImei(simID);
+                /*return (String) (myObject = getSimManagerDefault(simID)).getClass()
+                        .getDeclaredMethod("getDeviceId", int.class).invoke(myObject, simID);*/
             }
 
         } catch (Exception e) {
@@ -202,8 +205,9 @@ public class SamsungDualSim extends DualsimBase {
                         .getDeclaredMethod("getSimOperator").invoke(myObject);
 
             } else {
-                return (String) (myObject = getSimManagerDefault(simID)).getClass()
-                        .getDeclaredMethod("getSimOperator", int.class).invoke(myObject, simID);
+                return super.getOperator(simID);
+                /*return (String) (myObject = getSimManagerDefault(simID)).getClass()
+                        .getDeclaredMethod("getSimOperator", int.class).invoke(myObject, simID);*/
             }
 
         } catch (Exception e) {

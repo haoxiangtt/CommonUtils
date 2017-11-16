@@ -48,9 +48,9 @@ public class DialogUtil {
 
 	public static Dialog showProgressDialog(Context context,String message, int gravity, boolean focusable){
 		Dialog progressDialog = new Dialog(context,
-			PackageUtil.getIdentifier(context, "utils_progress_dialog", "style"));
+			PackageUtils.getIdentifier(context, "utils_progress_dialog", "style"));
 		progressDialog.setContentView(
-			PackageUtil.getIdentifier(context, "utils_progress_dialog", "layout"));
+			PackageUtils.getIdentifier(context, "utils_progress_dialog", "layout"));
 		progressDialog.setCanceledOnTouchOutside(false);
 		progressDialog.setCancelable(true);
 
@@ -66,7 +66,7 @@ public class DialogUtil {
 		progressDialog.getWindow().setBackgroundDrawableResource(
 				android.R.color.transparent);
 		TextView msg = (TextView) progressDialog
-				.findViewById(PackageUtil.getIdentifierId(context, "id_tv_loadingmsg"));
+				.findViewById(PackageUtils.getIdentifierId(context, "id_tv_loadingmsg"));
 		if(!TextUtils.isEmpty(message)) {
 			msg.setVisibility(View.VISIBLE);
 			msg.setText(message);
@@ -86,13 +86,13 @@ public class DialogUtil {
 	 */
 	public static Dialog showImageDialog(Context context, String message, Drawable image){
 		Dialog progressDialog = new Dialog(context,
-			PackageUtil.getIdentifier(context, "utils_progress_dialog", "style"));
-		progressDialog.setContentView(PackageUtil.getIdentifierLayout(context, "utils_showtip_dialog"));
+			PackageUtils.getIdentifier(context, "utils_progress_dialog", "style"));
+		progressDialog.setContentView(PackageUtils.getIdentifierLayout(context, "utils_showtip_dialog"));
 		progressDialog.setCancelable(false);
 		progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-		TextView msg = (TextView) progressDialog.findViewById(PackageUtil.getIdentifierId(context, "tv_message"));
+		TextView msg = (TextView) progressDialog.findViewById(PackageUtils.getIdentifierId(context, "tv_message"));
 		msg.setText(message);
-		ImageView iv = (ImageView)progressDialog.findViewById(PackageUtil.getIdentifierId(context, "iv_tip"));
+		ImageView iv = (ImageView)progressDialog.findViewById(PackageUtils.getIdentifierId(context, "iv_tip"));
 		iv.setImageDrawable(image);
 		progressDialog.show();
 		return progressDialog;
@@ -101,10 +101,10 @@ public class DialogUtil {
 
 	public static Dialog showPicture(Context context, Drawable drawable){
 		Dialog progressDialog = new Dialog(context,
-			PackageUtil.getIdentifier(context, "utils_progress_dialog", "style"));
-		progressDialog.setContentView(PackageUtil.getIdentifierLayout(context, "utils_show_picture_dialog"));
+			PackageUtils.getIdentifier(context, "utils_progress_dialog", "style"));
+		progressDialog.setContentView(PackageUtils.getIdentifierLayout(context, "utils_show_picture_dialog"));
 		ImageView imageView = (ImageView) progressDialog.findViewById(
-			PackageUtil.getIdentifierId(context, "iv_picture"));
+			PackageUtils.getIdentifierId(context, "iv_picture"));
 		imageView.setImageDrawable(drawable);
 		progressDialog.setCancelable(false);
 		progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);

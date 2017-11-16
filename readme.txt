@@ -19,7 +19,7 @@
 	8、cn.richinfo.utils.MessageUtil：消息提示工具；
 	9、cn.richinfo.utils.MobileUtil：判断手机号码；
 	10、cn.richinfo.utils.NetworkState/cn.richinfo.utils.NetworkUtils：网络相关工具类；
-	11、cn.richinfo.utils.PackageUtil：包管理器工具；
+	11、cn.richinfo.utils.PackageUtils：包管理器工具；
 	12、cn.richinfo.utils.PermissionUtil：授权管理工具；
 	13、cn.richinfo.utils.Platform：简易线程池管理工具；
 	14、cn.richinfo.utils.ReflectUtil：反射类相关工具；

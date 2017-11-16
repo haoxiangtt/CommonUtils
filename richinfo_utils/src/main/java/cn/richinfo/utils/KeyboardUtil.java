@@ -48,11 +48,11 @@ public class KeyboardUtil {
 
 		this.ed = edit;
 		upperLetterKeyboard = new Keyboard(ctx,
-			PackageUtil.getIdentifier(ctx, "utils_keyboard_upper_letter", "xml"));
+			PackageUtils.getIdentifier(ctx, "utils_keyboard_upper_letter", "xml"));
 		lowerLetterKeyboard = new Keyboard(ctx,
-			PackageUtil.getIdentifier(ctx, "utils_keyboard_lower_letter", "xml"));
+			PackageUtils.getIdentifier(ctx, "utils_keyboard_lower_letter", "xml"));
 		numberKeyboard = new Keyboard(ctx,
-			PackageUtil.getIdentifier(ctx, "utils_keyboard_number", "xml"));
+			PackageUtils.getIdentifier(ctx, "utils_keyboard_number", "xml"));
 
 		isNumberKeyBoard = false;
 		isUpperCase = false;
@@ -63,9 +63,9 @@ public class KeyboardUtil {
 		keyboardView.setPreviewEnabled(false);
 		keyboardView.setOnKeyboardActionListener(listener);
 		keyboardCloseAnim = AnimationUtils.loadAnimation(ctx,
-			PackageUtil.getIdentifier(ctx, "operate_controler_close", "anim"));
+			PackageUtils.getIdentifier(ctx, "operate_controler_close", "anim"));
 		keyboardOpenAnim = AnimationUtils.loadAnimation(ctx,
-			PackageUtil.getIdentifier(ctx, "operate_controler_open", "anim"));
+			PackageUtils.getIdentifier(ctx, "operate_controler_open", "anim"));
 		keyboardOpenAnim.setFillAfter(true);
 		keyboardCloseAnim.setFillAfter(true);
 		keyboardOpenAnim.setAnimationListener(new AnimationListener() {

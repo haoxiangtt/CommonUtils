@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.richinfo.utils.PackageUtil;
+import cn.richinfo.utils.PackageUtils;
 
 /**
  * @author ouyangjinfu
@@ -39,8 +39,8 @@ public class ImageSpanParser {
     
     private ImageSpanParser(Context context) {
         mContext = context;
-		DEFAULT_IMAGE_RES_IDS = PackageUtil.getIdentifier(context, "icon_array", "array");
-		DEFAULT_IMAGE_TEXTS_IDS = PackageUtil.getIdentifier(context, "text_array", "array");
+		DEFAULT_IMAGE_RES_IDS = PackageUtils.getIdentifier(context, "icon_array", "array");
+		DEFAULT_IMAGE_TEXTS_IDS = PackageUtils.getIdentifier(context, "text_array", "array");
         mImageTexts = buildImageText();    
         mImageToRes = buildImageToRes();
         mImageDrawable = new HashMap<String, Drawable>();

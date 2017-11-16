@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import cn.richinfo.utils.LogUtil;
-import cn.richinfo.utils.PackageUtil;
+import cn.richinfo.utils.PackageUtils;
 import cn.richinfo.utils.PermissionUtil;
 
 /**
@@ -67,7 +67,7 @@ public class PhotoPicker {
 	 * 显示选择添加图片方式界面
 	 */
 	public void showSelectView() {
-		int resId = PackageUtil.getIdentifier(mActivity, "utils_photo_picker_customDialog", "style");
+		int resId = PackageUtils.getIdentifier(mActivity, "utils_photo_picker_customDialog", "style");
 		mDialog = new PicSelectorDialog(mActivity, resId, new OnClickListener() {
 			@Override
 			public void onClick(View v) {

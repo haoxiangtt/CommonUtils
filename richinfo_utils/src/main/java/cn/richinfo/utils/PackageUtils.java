@@ -15,9 +15,9 @@ import java.security.MessageDigest;
 /**
  * 获取app包信息
  */
-public class PackageUtil {
+public class PackageUtils {
 
-    private static final String TAG = "PackageUtil";
+    private static final String TAG = "PackageUtils";
 
     /**
      * 获取包管理器

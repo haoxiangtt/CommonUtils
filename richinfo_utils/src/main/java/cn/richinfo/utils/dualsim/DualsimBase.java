@@ -257,9 +257,41 @@ public abstract class DualsimBase {
         return false;
     }
 
-    public abstract String getImsi(int simID);
+    public String getImsi(int simID) {
+        /** read imsi */
+        try {
+            if (currentapiVersion == 21) {
+                return getReflexData(mTelephonyManager, "getSubscriberId", (long)getSubId(null, simID));
+            } else {
+                return getReflexData(mTelephonyManager, "getSubscriberId", getSubId(null, simID));
+            }
+        } catch (DualSimMatchException e) {
+            try {
+                return getReflexData(mTelephonyManager, "getSubscriberIdGemini", simID);
+            } catch (DualSimMatchException e1) {
+                if (simID == TYPE_SIM_MAIN) {
+                    return mTelephonyManager.getSubscriberId();
+                }
+            }
+        }
+        return "";
+    }
 
-    public abstract int getSimState(int simID);
+    public int getSimState(int simID) {
+        /** read isready */
+        try {
+            return getReflexState(mTelephonyManager, "getSimState", simID);
+        } catch (DualSimMatchException e) {
+            try {
+                return getReflexState(mTelephonyManager, "getSimStateGemini", simID);
+            } catch (DualSimMatchException e1) {
+                if (simID == TYPE_SIM_MAIN) {
+                    return mTelephonyManager.getSimState();
+                }
+            }
+        }
+        return 0;
+    }
 
     @SuppressLint("NewApi")
     public String getImei(int simID) {
