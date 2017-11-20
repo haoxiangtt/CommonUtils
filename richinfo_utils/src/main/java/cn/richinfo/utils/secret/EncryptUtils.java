@@ -8,9 +8,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.DigestInputStream;
 import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -849,9 +859,168 @@ public final class EncryptUtils {
         }
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////
+    // RSA加密相关
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * RSA转变
+     * <p>法算法名称/加密模式/填充方式</p>
+     * <p>加密模式有：电子密码本模式ECB、加密块链模式CBC、加密反馈模式CFB、输出反馈模式OFB</p>
+     * <p>填充方式有：NoPadding、ZerosPadding、PKCS5Padding</p>
+     */
+    public static        String RSA_Transformation = "RSA/ECB/PKCS1Padding";
+    private static final String RSA_Algorithm      = "RSA";
+    public static final String KEY_PUBLIC = "public";
+    public static final String KEY_PRIVATE = "private";
+
+
+    /**
+     * 生成RSA秘钥对
+     * @return
+     */
+    public static Map<String, byte[]> generateKeyPair(){
+        KeyPairGenerator keyPairGen = null;
+        try {
+            keyPairGen = KeyPairGenerator.getInstance(RSA_Algorithm);
+            keyPairGen.initialize(1024);
+            KeyPair keyPair = keyPairGen.generateKeyPair();
+            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+            Map<String, byte[]> map = new HashMap<>();
+            map.put(KEY_PUBLIC, publicKey.getEncoded());
+            map.put(KEY_PRIVATE, privateKey.getEncoded());
+            return map;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * RSA加密后转为base64编码
+     * @param data 加密数据
+     * @param key 秘钥
+     * @param isPublicKey 为true表示公钥加密，为false表示私钥加密
+     * @return
+     */
+    public static byte[] encryptRSA2Base64(byte[] data, byte[] key, boolean isPublicKey){
+        return base64Encode(isPublicKey ? encryptRSAByPublicKey(data, key)
+            : encryptRSAByPrivate(data, key));
+    }
+
+
+
+    /**
+     * RSA加密后转16进制
+     * @param data 加密数据
+     * @param key 秘钥
+     * @param isPublicKey 为true表示公钥加密，为false表示私钥加密
+     * @return
+     */
+    public static String encryptRSA2HexString(byte[] data, byte[] key, boolean isPublicKey) {
+        return bytes2HexString(isPublicKey ? encryptRSAByPublicKey(data, key)
+                : encryptRSAByPrivate(data, key));
+    }
+
+    public static byte[] decryptHexStringRSA(String data, byte[] key, boolean isPublicKey) {
+        return isPublicKey ? decryptRSAByPublic(hexString2Bytes(data), key)
+                : decryptRSAByPrivate(hexString2Bytes(data), key);
+    }
+
+    public static byte[] decryptBase64RSA(byte[] data, byte[] key, boolean isPublicKey) {
+        return isPublicKey ? decryptRSAByPublic(base64Decode(data), key)
+                : decryptRSAByPrivate(base64Decode(data), key);
+    }
+
+
+    /**
+     * RSA公钥加密
+     * @param data 数据源
+     * @param key 密钥(公钥)
+     * @return
+     */
+    public static byte[] encryptRSAByPublicKey(byte[] data, byte[] key) {
+        X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(key);
+        KeyFactory keyFactory = null;
+        try {
+            keyFactory = KeyFactory.getInstance(RSA_Algorithm);
+            Key publicK = keyFactory.generatePublic(x509KeySpec);
+            // 对数据加密
+            Cipher cipher = Cipher.getInstance(RSA_Transformation);
+            cipher.init(Cipher.ENCRYPT_MODE, publicK);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * RSA私钥加密
+     * @param data 数据源
+     * @param key 密钥(私钥)
+     * @return
+     */
+    public static byte[] encryptRSAByPrivate(byte[] data, byte[] key) {
+        try {
+            PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(key);
+            KeyFactory keyFactory = KeyFactory.getInstance(RSA_Algorithm);
+            Key privateK = keyFactory.generatePrivate(pkcs8KeySpec);
+            Cipher cipher = Cipher.getInstance(RSA_Transformation);
+            cipher.init(Cipher.ENCRYPT_MODE, privateK);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * RSA公钥解密
+     * @param data 加密数据
+     * @param key 秘钥(公钥)
+     * @return
+     */
+    public static byte[] decryptRSAByPublic(byte[] data, byte[] key) {
+        try {
+            X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(key);
+            KeyFactory keyFactory = KeyFactory.getInstance(RSA_Algorithm);
+            Key publicK = keyFactory.generatePublic(x509KeySpec);
+            Cipher cipher = Cipher.getInstance(RSA_Transformation);
+            cipher.init(Cipher.DECRYPT_MODE, publicK);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * RSA私钥解密
+     * @param data 加密数据
+     * @param key 秘钥(私钥)
+     * @return
+     */
+    public static byte[] decryptRSAByPrivate(byte[] data, byte[] key) {
+        try {
+            PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(key);
+            KeyFactory keyFactory = KeyFactory.getInstance(RSA_Algorithm);
+            Key privateK = keyFactory.generatePrivate(pkcs8KeySpec);
+            Cipher cipher = Cipher.getInstance(RSA_Transformation);
+            cipher.init(Cipher.DECRYPT_MODE, privateK);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     private static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    private static String bytes2HexString(final byte[] bytes) {
+    public static String bytes2HexString(final byte[] bytes) {
         if (bytes == null) return null;
         int len = bytes.length;
         if (len <= 0) return null;
@@ -863,7 +1032,7 @@ public final class EncryptUtils {
         return new String(ret);
     }
 
-    private static byte[] hexString2Bytes(String hexString) {
+    public static byte[] hexString2Bytes(String hexString) {
         if (isSpace(hexString)) return null;
         int len = hexString.length();
         if (len % 2 != 0) {
@@ -888,11 +1057,11 @@ public final class EncryptUtils {
         }
     }
 
-    private static byte[] base64Encode(final byte[] input) {
+    public static byte[] base64Encode(final byte[] input) {
         return Base64.encode(input, Base64.NO_WRAP);
     }
 
-    private static byte[] base64Decode(final byte[] input) {
+    public static byte[] base64Decode(final byte[] input) {
         return Base64.decode(input, Base64.NO_WRAP);
     }
 
