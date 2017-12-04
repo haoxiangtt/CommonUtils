@@ -36,3 +36,6 @@
     25、cn.richinfo.utils.SizeUtils：尺寸相关工具类；
 
 目前工具包中的部分类不够完善，欢迎大家一起扩展完善。
+作者：ouyangjinfu
+
+

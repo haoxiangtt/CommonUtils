@@ -73,7 +73,7 @@ public class VerticalImageSpan extends ImageSpan {
 	        	offset = (int)((mTextView.getLineSpacingMultiplier() - 1) *
 	        			(bottom - top) / 4);
         	}
-        	transY = ((bottom - top) - drawable.getBounds().bottom) / 2 + top - offset;
+        	transY = ((bottom - top) - drawable.getBounds().height()) / 2 + top - offset;
         }
         canvas.translate(x, transY);
         drawable.draw(canvas);

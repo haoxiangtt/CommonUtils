@@ -72,16 +72,15 @@ public class ImageSpanParser {
 
 	// 构建正则表达式    
 	private Pattern buildPattern() {
-//		String patternStr = "#\\d{2,}";
-//		return patternStr;
-	    StringBuilder patternString = new StringBuilder(mImageTexts.length * 3);    
+		String patternString = "#\\d{2,}";
+	   /* StringBuilder patternString = new StringBuilder(mImageTexts.length * 3);
 	    patternString.append('(');    
 	    for (String s : mImageTexts) {    
 	        patternString.append(Pattern.quote(s));    
 	        patternString.append('|');    
 	    }    
 	    patternString.replace(patternString.length() - 1, patternString    
-	            .length(), ")");    
+	            .length(), ")");*/
 	    return Pattern.compile(patternString.toString());    
 	}
 
@@ -111,6 +110,9 @@ public class ImageSpanParser {
 	        }else{
 	        	int resId = mImageToRes.get(str);   
 	        	drawable = mContext.getResources().getDrawable(resId);
+				if (drawable == null) {
+					continue;
+				}
 	        	mImageDrawable.put(str, drawable);
 	        }
 	        mPaint.setTextSize(textSize);

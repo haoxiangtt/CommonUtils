@@ -162,7 +162,7 @@ public class SamsungDualSim extends DualsimBase {
                 return (Integer) (myObject = getSimManagerDefault(simID)).getClass()
                         .getDeclaredMethod("getSimState").invoke(myObject);
             } else {
-                return getSimState(simID);
+                return super.getSimState(simID);
                 /*return (Integer) (myObject = getSimManagerDefault(simID)).getClass()
                         .getDeclaredMethod("getSimState", int.class).invoke(myObject, simID);*/
             }
