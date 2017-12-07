@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @Title:
  * @Description:
  * @Copyright: Copyright (c) 2011
- * @Company:深圳彩讯科技有限公司
+ * @Company:XXXXXXXXXXXXXXXXXXXX
  * @time 2015年4月3日 上午11:33:34
  */
 public class AESEncrypt {
