@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         KeyboardView keyView = (KeyboardView) findViewById(R.id.keyboard);
-        mKeyBoard = new KeyboardUtil(keyView, this, mEtInput);
+        mKeyBoard = new KeyboardUtil(keyView, this, mEtInput, true);
         mKeyBoard.hideSoftInputMethod(this);
     }
 }

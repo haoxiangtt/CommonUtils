@@ -18,6 +18,9 @@ import android.widget.EditText;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author ouyangjinfu
@@ -30,6 +33,8 @@ public class KeyboardUtil {
 
 	private static final String TAG = "KeyboardUtil";
 	private static final boolean DEBUG = BuildConfig.DEBUG;
+	private static final String STRING_PATTERN = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	public static final int RANDOM_COUNT = 100;
 
 	private KeyboardView keyboardView;
 	private Keyboard upperLetterKeyboard;// 大写字母键盘
@@ -37,6 +42,7 @@ public class KeyboardUtil {
 	private Keyboard numberKeyboard;// 数字键盘
 	private boolean isNumberKeyBoard;// 是否数据键盘
 	private boolean isUpperCase = false;// 是否大写
+	private boolean isRandom = false;//是否随机
 	
 	private boolean isKeyboradShowing;
 
@@ -45,6 +51,9 @@ public class KeyboardUtil {
 	private Animation keyboardOpenAnim;
 
 	public KeyboardUtil(KeyboardView view, Context ctx, EditText edit) {
+		this(view, ctx, edit, false);
+	}
+	public KeyboardUtil(KeyboardView view, Context ctx, EditText edit, boolean isRandom) {
 
 		this.ed = edit;
 		upperLetterKeyboard = new Keyboard(ctx,
@@ -53,10 +62,9 @@ public class KeyboardUtil {
 			PackageUtils.getIdentifier(ctx, "utils_keyboard_lower_letter", "xml"));
 		numberKeyboard = new Keyboard(ctx,
 			PackageUtils.getIdentifier(ctx, "utils_keyboard_number", "xml"));
-
+		this.isRandom = isRandom;
 		isNumberKeyBoard = false;
 		isUpperCase = false;
-
 		keyboardView = view;
 		keyboardView.setKeyboard(lowerLetterKeyboard);
 		keyboardView.setEnabled(true);
@@ -80,6 +88,13 @@ public class KeyboardUtil {
 			public void onAnimationEnd(Animation animation) {
 				keyboardView.setVisibility(View.VISIBLE);
 				keyboardView.clearAnimation();
+				if (isNumberKeyBoard) {
+					keyboardView.setKeyboard(numberKeyboard);
+				} else if (isUpperCase) {
+					keyboardView.setKeyboard(upperLetterKeyboard);
+				} else {
+					keyboardView.setKeyboard(lowerLetterKeyboard);
+				}
 			}
 		});
 		keyboardCloseAnim.setAnimationListener(new AnimationListener() {
@@ -223,12 +238,44 @@ public class KeyboardUtil {
 		}
 	};
 
+	private void randomKeyboard(Keyboard keyboard) {
+		List<Keyboard.Key> keys = keyboard.getKeys();
+		List<Keyboard.Key> needRandomKeys = new ArrayList<>();
+		for (Keyboard.Key key : keys) {
+			if (key.label != null && key.label.length() == 1 && STRING_PATTERN.contains(key.label)) {
+				needRandomKeys.add(key);
+			}
+		}
+		for (int i = 0; i < RANDOM_COUNT; i++) {
+			int index1 = 0;
+			int index2 = 0;
+			Random random = new Random();
+			while (index1 == index2){
+				index1 = random.nextInt(needRandomKeys.size());
+				index2 = random.nextInt(needRandomKeys.size());
+			}
+			Keyboard.Key key1 = needRandomKeys.get(index1);
+			Keyboard.Key key2 = needRandomKeys.get(index2);
+			CharSequence tempLabel = key1.label;
+			key1.label = key2.label;
+			key2.label = tempLabel;
+			int[] tempCodes = key1.codes;
+			key1.codes = key2.codes;
+			key2.codes = tempCodes;
+		}
+	}
+
 	/**
 	 * 打开自定义键盘
 	 */
 	public void showKeyboard() {
 		int visibility = keyboardView.getVisibility();
 		if (visibility == View.GONE || visibility == View.INVISIBLE) {
+			if (isRandom) {
+				randomKeyboard(upperLetterKeyboard);
+				randomKeyboard(lowerLetterKeyboard);
+				randomKeyboard(numberKeyboard);
+			}
 			keyboardView.setVisibility(View.VISIBLE);
 			keyboardView.startAnimation(keyboardOpenAnim);
 			isKeyboradShowing=true;

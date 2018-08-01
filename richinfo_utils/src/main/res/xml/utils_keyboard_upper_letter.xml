@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="1px"
-    android:horizontalGap="1px"
+    android:horizontalGap="1dp"
     android:keyHeight="60dp"
-    android:keyWidth="10.000002%p"
+    android:keyWidth="10%p"
     android:verticalGap="1dp" >
 
     <Row>
@@ -74,12 +73,9 @@
     </Row>
     <Row>
         <Key
-            android:codes="-12"
-            android:horizontalGap="4.999995%p"
-            android:keyIcon="@drawable/utils_keyboard_upper_case" />
-        <Key
             android:codes="90"
-            android:keyLabel="Z" />
+            android:keyLabel="Z"
+            android:horizontalGap="15%p"/>
         <Key
             android:codes="88"
             android:keyLabel="X" />
@@ -104,17 +100,21 @@
             android:codes="-3"
             android:keyEdgeFlags="left"
             android:keyIcon="@drawable/utils_keyboard_off"
-            android:keyWidth="33.333333%p" />
+            android:keyWidth="25%p" />
+        <Key
+            android:codes="-12"
+            android:keyIcon="@drawable/utils_keyboard_upper_case"
+            android:keyWidth="25%p" />
         <Key
             android:codes="-2"
             android:keyLabel="123"
-            android:keyWidth="33.333334%p" />
+            android:keyWidth="25%p" />
         <Key
             android:codes="-5"
             android:isRepeatable="true"
             android:keyEdgeFlags="right"
             android:keyIcon="@drawable/utils_keyboard_backspace"
-            android:keyWidth="33.333333%p" />
+            android:keyWidth="25%p" />
     </Row>
 
 </Keyboard>
